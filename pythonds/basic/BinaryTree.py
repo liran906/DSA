@@ -28,6 +28,18 @@ class BinaryTree:
     def getRightChild(self):
         return self.right
     
+    def height(self, count=1):
+        if not self.getLeftChild() and not self.getRightChild():
+            return count
+        else:
+            lcount = rcount = count
+            if self.getLeftChild():
+                lcount = self.getLeftChild().height(count + 1)
+            if self.getRightChild():
+                rcount = self.getRightChild().height(count + 1)
+            return max(lcount, rcount)
+
+    
     # 前序遍历
     def preorder(self):
         print(self.getRootVal())
@@ -62,13 +74,15 @@ if __name__ == '__main__':
     t = BinaryTree(3)
     t.insertLeft(4)
     t.insertLeft(5)
-    t.insertRight(6)
+    t.insertLeft(6)
     t.insertRight(7)
     print(t)
     lc = t.getLeftChild()
     llc = lc.getLeftChild()
     print(lc)
     print(llc)
+    print('height')
+    print(t.height())
 
     lc.setRootVal(9)
     print(t)
