@@ -28,6 +28,7 @@ class BinaryTree:
     def getRightChild(self):
         return self.right
     
+    # 前序遍历
     def preorder(self):
         print(self.getRootVal())
         if self.left:
@@ -35,6 +36,7 @@ class BinaryTree:
         if self.right:
             self.getRightChild().preorder()
     
+    # 中序遍历
     def inorder(self):
         if self.left:
             self.getLeftChild().inorder()
@@ -42,6 +44,7 @@ class BinaryTree:
         if self.right:
             self.getRightChild().inorder()
     
+    # 后续遍历
     def postorder(self):
         if self.left:
             self.getLeftChild().postorder()

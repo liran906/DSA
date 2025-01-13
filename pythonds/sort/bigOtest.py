@@ -7,6 +7,7 @@ from ShellSort import shellSort
 from MergeSort import mergeSort
 from QuickSort import quickSort
 from RadixSort import radixSort
+from HeapSort import heapSort
 
 def test_sort(sort_function, data, name):
     l = data[:]  # 深拷贝，避免修改原数据
@@ -32,3 +33,4 @@ test_sort(shellSort, lst, 'shell sort (100,000 items)')
 test_sort(mergeSort, lst, 'merge sort (100,000 items)')
 test_sort(quickSort, lst, 'quick sort (100,000 items)')
 test_sort(radixSort, lst, 'radix sort (100,000 items)')
+test_sort(heapSort, lst, 'heap sort (100,000 items)')
