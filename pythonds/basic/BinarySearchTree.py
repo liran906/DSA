@@ -64,7 +64,7 @@ class BSTNode:
             else:
                 self.parent.rightChild = None
         elif self.hasBothChildren():
-            pass # leaving blank for future codings.
+            pass # isnt used in BST algrothrim. Leaving blank for future codings.
         else: # has one child
             if self.isLeftChild():
                 if self.getLeftChild():
@@ -95,7 +95,7 @@ class BinarySearchTree:
     def __iter__(self):
         return self.root.__iter__()
     
-    def put(self, key, value):
+    def put(self, key, value=None):
         if not self.root:
             self.root = BSTNode(key, value)
         else:
@@ -177,7 +177,7 @@ class BinarySearchTree:
         elif currentNode.hasBothChildren(): # two children
             successor = currentNode.rightChild.findSuccessor()
             # okay to write as below, only deletes the links linking to it.
-            # PROBLEM IS FINDING THE KEY OVER AGAIN: RECALCULATION.
+            # PROBLEM IS FINDING THE KEY IN GET METHOD OVER AGAIN: RECALCULATION.
             # self.delete(successor.key)
             successor.spliceOut()
             currentNode.key = successor.key
@@ -213,21 +213,8 @@ class BinarySearchTree:
 if __name__ == '__main__':
     from random import randint
     ttree = BinarySearchTree()
-    ttree.put(10, 'root')
-    for i in range(18):
-        ttree.put(i, '4tst')
-    for k,v in ttree:
-        print(f'key = {k}, value = {v}')
+    for i in range(100):
+        ttree.put(randint(1,10000))
+    for i in ttree:
+        print(i, end=', ')
     print(len(ttree))
-    print(ttree.root.key)
-    ttree.delete(9)
-    ttree.delete(7)
-    ttree.delete(11)
-    for k,v in ttree:
-        print(f'key = {k}, value = {v}')
-    for i in range(2,18,2):
-        ttree.delete(i)
-    print('===')
-    for k,v in ttree:
-        print(f'key = {k}, value = {v}')
-    print(ttree.root.key)
