@@ -56,3 +56,28 @@ class Solution:
         
         # pick the largest:
         return max(fmax(root), self.tmax)
+
+
+class Solution:
+    def maxPathSum(self, root):
+        self.tmax = -float('inf') # tmax is actually the result.
+        self.root = root
+
+        def fmax(node):
+            lmax = fmax(node.left) if node.left else 0 # max of left subT
+            rmax = fmax(node.right) if node.right else 0 # max of right subT
+
+            # max value going to parent node, so can't be node + both children:
+            # node + (left subT or right subT)
+            cmax = node.val + max(lmax, rmax)
+
+            # max value NOT going to parent node:
+            # leftT + node + rightT, 
+            # if either child is negetive, function returns 0, aka ignoring the child.
+            self.tmax = max(self.tmax, node.val + lmax + rmax)
+
+            # pass the current max to parent; if negetive, pass 0.
+            return max(cmax, 0)
+        
+        fmax(root)
+        return self.tmax # doesn't need to compare tmax with fmax(root).
