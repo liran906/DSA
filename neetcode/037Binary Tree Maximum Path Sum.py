@@ -57,11 +57,10 @@ class Solution:
         # pick the largest:
         return max(fmax(root), self.tmax)
 
-
+# Ultimate version, optimizes the logic.
 class Solution:
     def maxPathSum(self, root):
         self.tmax = -float('inf') # tmax is actually the result.
-        self.root = root
 
         def fmax(node):
             lmax = fmax(node.left) if node.left else 0 # max of left subT
