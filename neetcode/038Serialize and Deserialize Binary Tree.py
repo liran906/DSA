@@ -12,8 +12,12 @@ class TreeNode:
 class Codec:
     # Encodes a tree to a single string.
     def serialize(self, root):
+        if not root:
+            return '[]'
         queue = [root]
         res = []
+
+        # bfs, can also be dfs
         while queue:
             current = queue.pop(0)
             if current:
@@ -23,6 +27,8 @@ class Codec:
             else:
                 res.append(current)
 
+        # delete the useless nones
+        # can leave the nones, saving extra time, but uses extra space.
         while res[-1] == None:
             res.pop()
         
@@ -32,13 +38,14 @@ class Codec:
     def deserialize(self, data):
         data = eval(data)
         queue = []
-        if data:
-            root = TreeNode(data.pop(0))
+        root = TreeNode('')
+        if data: # contains at least a root value.
+            root.val = data.pop(0)
             queue.append(root)
-        while queue and data:
+        while queue and data: # if data runs out, all nodes in queue are leaf nodes. loop stops.
             current = queue.pop(0)
             pop1 = data.pop(0)
-            pop2 = data.pop(0) if data else None
+            pop2 = data.pop(0) if data else None # if data only had 1 value, the second pop is assigned with none.
             
             if pop1:
                 current.left = TreeNode(pop1)
@@ -46,16 +53,16 @@ class Codec:
             if pop2:
                 current.right = TreeNode(pop2)
                 queue.append(current.right)
-            
-            
+        return root
+    
 
+if __name__ == '__main__':
+    t = TreeNode(5)
+    t.left = TreeNode(1)
+    t.right = TreeNode(2)
+    t.right.left = TreeNode(3)
+    t.right.right = TreeNode(4)
+    t.right.left.left = TreeNode(6)
 
-t = TreeNode(5)
-t.left = TreeNode(1)
-t.right = TreeNode(2)
-t.right.left = TreeNode(3)
-t.right.right = TreeNode(4)
-t.right.left.left = TreeNode(6)
-
-s = Codec()
-print(s.serialize(t))
+    s = Codec()
+    print(s.serialize(t))
