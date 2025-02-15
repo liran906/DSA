@@ -1,4 +1,5 @@
 # https://open.kattis.com/problems/10kindsofpeople
+# 4.7
 
 # def move(notation, maze, visitlist, start_row, start_col, end_row, end_col):
 #     if start_row < 0 or start_row >= len(maze) or start_col < 0 or start_col >= len(maze[0]):

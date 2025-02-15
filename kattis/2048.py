@@ -1,3 +1,6 @@
+# https://open.kattis.com/problems/2048
+# 2.7
+
 def rotatelst(lst):
     # clockwise rotation
     r_lst = [[] for i in range(4)]
