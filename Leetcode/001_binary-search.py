@@ -15,6 +15,19 @@ class Solution(object):
                 return m
         return -1
 
+class Solution(object):
+    def search(self, nums, target):
+        l, r = 0, len(nums) # 按照左闭右开原则，r 取 len(nums)
+        while l < r: # 左闭右开就不需要或等于了，因为没意义
+            m = (l + r) // 2
+            if nums[m] > target:
+                r = m # 右开所以r=m
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                return m
+        return -1
+
 # recursion
 class Solution(object):
     def search(self, nums, target):
