@@ -1,5 +1,4 @@
-# binary-search
-# https://leetcode.cn/problems/binary-search/submissions/609778718/
+# https://leetcode.cn/problems/binary-search/
 # e
 
 class Solution(object):
