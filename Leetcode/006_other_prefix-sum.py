@@ -1,4 +1,4 @@
-# https://kamacoder.com/problempage.php
+# https://kamacoder.com/problempage.php?pid=1070
 
 # 普通方法 O(n*t)
 def sums(nums, s, e):
