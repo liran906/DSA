@@ -25,7 +25,7 @@ class Solution(object):
     def detectCycle(self, head):
         fast = slow = head
         while True:
-            if not fast or not fast.next or not fast.next.next:
+            if not fast or not fast.next:
                 return None
             fast = fast.next.next
             slow = slow.next
