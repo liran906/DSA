@@ -20,4 +20,7 @@ func main() {
 	a := 21
 	fmt.Println(search.BinarySearch_recursive(a, alist))
 	fmt.Println(search.BinarySearch_pointer(a, alist))
+
+	str := "abc"
+	fmt.Printf("%T,%d", str[0], str[0])
 }
