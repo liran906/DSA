@@ -13,7 +13,7 @@ func postorderTraversal(root *TreeNode) []int {
 		return []int{}
 	}
 
-	res := []int(postorderTraversal(root.Left))
+	res := postorderTraversal(root.Left)
 	res = append(res, postorderTraversal(root.Right)...)
 	res = append(res, root.Val)
 
