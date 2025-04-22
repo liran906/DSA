@@ -29,3 +29,77 @@ func inorderTraversal_i(root *TreeNode) (res []int) {
 	}
 	return
 }
+
+// 复习前中后序 迭代遍历二叉树
+func inorderTraversal_ii(root *TreeNode) (res []int) {
+	if root == nil {
+		return
+	}
+
+	stack := []*TreeNode{}
+	cur := root
+
+	for len(stack) > 0 || cur != nil {
+		if cur != nil {
+			stack = append(stack, cur)
+			cur = cur.Left
+		} else {
+			cur = stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			res = append(res, cur.Val)
+			cur = cur.Right
+		}
+	}
+	return
+}
+
+func preorderTraversal_ii(root *TreeNode) (res []int) {
+	if root == nil {
+		return
+	}
+
+	stack := []*TreeNode{root}
+	var cur *TreeNode
+
+	for len(stack) > 0 {
+		cur = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		res = append(res, cur.Val)
+
+		if cur.Right != nil {
+			stack = append(stack, cur.Right)
+		}
+		if cur.Left != nil {
+			stack = append(stack, cur.Left)
+		}
+	}
+	return
+}
+
+func postorderTraversal_ii(root *TreeNode) (res []int) {
+	if root == nil {
+		return
+	}
+
+	stack := []*TreeNode{root}
+	var cur *TreeNode
+
+	for len(stack) > 0 {
+		cur = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		res = append(res, cur.Val)
+		if cur.Left != nil {
+			stack = append(stack, cur.Left)
+		}
+		if cur.Right != nil {
+			stack = append(stack, cur.Right)
+		}
+	}
+
+	for l, r := 0, len(res)-1; l < r; l, r = l+1, r-1 {
+		res[l], res[r] = res[r], res[l]
+	}
+	return
+}

@@ -7,9 +7,10 @@ func postorderTraversal_i(root *TreeNode) (res []int) {
 		return
 	}
 
+	stack := []*TreeNode{root}
 	var cur *TreeNode
 
-	for stack := []*TreeNode{root}; len(stack) > 0; {
+	for len(stack) > 0 {
 		cur = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 
