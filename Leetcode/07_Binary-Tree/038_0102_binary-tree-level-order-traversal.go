@@ -70,3 +70,28 @@ func levelOrder_2(root *TreeNode) (res [][]int) {
 	}
 	return
 }
+
+// 递归方法
+func levelOrderRecursive(root *TreeNode) (res [][]int) {
+	var dfs func(node *TreeNode, depth int) // 先声明出来，才能递归调用
+	dfs = func(node *TreeNode, depth int) {
+		if node == nil {
+			return
+		}
+
+		// 如果当前层还没添加
+		if depth == len(res) {
+			res = append(res, []int{})
+		}
+
+		// 加入当前层
+		res[depth] = append(res[depth], node.Val)
+
+		// 递归左右子树
+		dfs(node.Left, depth+1)
+		dfs(node.Right, depth+1)
+	}
+
+	dfs(root, 0)
+	return res
+}

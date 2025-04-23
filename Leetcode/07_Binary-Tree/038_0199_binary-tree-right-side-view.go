@@ -64,3 +64,30 @@ func rightSideView_2(root *TreeNode) (res []int) {
 	}
 	return
 }
+
+// 递归方法
+func rightSideView_Recursive(root *TreeNode) (res []int) {
+	var dfs func(*TreeNode, int)
+	dfs = func(node *TreeNode, depth int) {
+		if node == nil {
+			return
+		}
+
+		if len(res) == depth {
+			res = append(res, -101)
+		}
+		// 到这里位置都和正常层序遍历递归算法一样
+
+		// 如果当前层的值为 -101，也就是没被动过（-100 <= Node.val <= 100），那么才赋值
+		//（因为我们是从右到左遍历的）
+		if res[depth] == -101 {
+			res[depth] = node.Val
+		}
+
+		// 注意，一定要先从右子树开始（因为求的是右视图）
+		dfs(node.Right, depth+1)
+		dfs(node.Left, depth+1)
+	}
+	dfs(root, 0)
+	return
+}
