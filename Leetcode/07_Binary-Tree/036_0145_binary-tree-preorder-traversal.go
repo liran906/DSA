@@ -17,6 +17,7 @@ func preorderTraversal_i(root *TreeNode) (res []int) {
 	var stack []*TreeNode
 	var cur *TreeNode
 
+	// dfs
 	stack = []*TreeNode{root}
 	for len(stack) > 0 {
 		cur = stack[len(stack)-1]
