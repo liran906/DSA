@@ -47,7 +47,8 @@ def quickSort(alist, start=0, end=None):
             lmark += 1
             rmark -= 1
 
-    # 将基准值放到正确位置
+    # 将基准值放到正确位置，由于左右两部分仅仅是和 mid 值大小的比较，并没有排序
+    # 所以将rmark换到start或者其他以左的位置都没问题
     alist[start], alist[rmark] = alist[rmark], alist[start]
 
     # 递归处理左右子数组
