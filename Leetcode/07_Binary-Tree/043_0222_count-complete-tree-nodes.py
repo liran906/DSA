@@ -37,6 +37,7 @@ class Solution(object):
             # 递归求左子树节点数 + 右子树节点数 + 1（当前根节点）
             return self.countNodes(root.left) + 2**rd - 1 + 1
 
+    # 完全二叉树的高度就是其左子树的高度+1
     def depth(self, node):
         if not node: return 0
         return self.depth(node.left) + 1 if node.left else 1
