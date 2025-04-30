@@ -27,6 +27,8 @@ func depth(node *TreeNode) int {
 	return max(depth(node.Left), depth(node.Right)) + 1
 }
 
+// ==================================================================
+// ==================================================================
 // O(n)
 // 一次遍历，同时返回深度以及是否平衡
 func isBalanced(root *TreeNode) bool {
