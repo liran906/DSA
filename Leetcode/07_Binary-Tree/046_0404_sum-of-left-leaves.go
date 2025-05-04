@@ -3,6 +3,7 @@
 
 package main
 
+// **递归方法 1
 func sumOfLeftLeaves(root *TreeNode) int {
 	// 定义递归函数：传入当前节点和一个布尔值 isLeft
 	// isLeft 表示当前节点是否是其父节点的左子节点
@@ -48,4 +49,31 @@ func sumOfLeftLeaves_2(root *TreeNode) int {
 	sum += sumOfLeftLeaves(root.Left)
 	sum += sumOfLeftLeaves(root.Right)
 	return sum
+}
+
+// 迭代方法
+func sumOfLeftLeaves_i(root *TreeNode) (res int) {
+	if root == nil {
+		return 0
+	}
+
+	stack := []*TreeNode{root}
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		// 如果左不为空
+		if node.Left != nil {
+			// 且左子节点为叶节点
+			if node.Left.Left == nil && node.Left.Right == nil {
+				// 那么就加上他的值
+				res += node.Left.Val
+			} else {
+				stack = append(stack, node.Left)
+			}
+		}
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+	}
+	return
 }
