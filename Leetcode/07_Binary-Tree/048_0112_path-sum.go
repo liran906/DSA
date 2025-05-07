@@ -18,7 +18,7 @@ func hasPathSum_o(root *TreeNode, targetSum int) bool {
 	return dfs(root, targetSum, 0)
 }
 
-// ** 递归 2
+// ** 递归 2 和 1 一样，写法更精简一点
 func hasPathSum(root *TreeNode, targetSum int) bool {
 	if root == nil {
 		return false
@@ -30,7 +30,7 @@ func hasPathSum(root *TreeNode, targetSum int) bool {
 		hasPathSum(root.Right, targetSum-root.Val)
 }
 
-// 单栈+结构体
+// **单栈+结构体，这是单独定义的结构体，可以对比下面一个用匿名结构体的类似方法
 type nodeSum struct {
 	node *TreeNode
 	sum  int
@@ -57,6 +57,42 @@ func hasPathSum_i(root *TreeNode, targetSum int) bool {
 		}
 		if node.Right != nil {
 			stack = append(stack, nodeSum{node.Right, sum + node.Right.Val})
+		}
+	}
+	return false
+}
+
+// 匿名结构体
+func hasPathSum_i_(root *TreeNode, targetSum int) bool {
+	if root == nil {
+		return false
+	}
+	stack := []struct {
+		node *TreeNode
+		sum  int
+	}{{root, 0}}
+
+	for len(stack) > 0 {
+		top := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+
+		node := top.node
+		sum := top.sum
+
+		if node.Left == nil && node.Right == nil && node.Val+sum == targetSum {
+			return true
+		}
+		if node.Left != nil {
+			stack = append(stack, struct {
+				node *TreeNode
+				sum  int
+			}{node.Left, sum + node.Val})
+		}
+		if node.Right != nil {
+			stack = append(stack, struct {
+				node *TreeNode
+				sum  int
+			}{node.Right, sum + node.Val})
 		}
 	}
 	return false
