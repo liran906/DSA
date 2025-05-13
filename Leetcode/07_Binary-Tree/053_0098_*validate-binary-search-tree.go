@@ -3,7 +3,10 @@
 
 package main
 
-// 递归，注意对于 int 指针的使用。
+// **两个方法都好**
+
+// 递归，dfs 并记录上下限
+// 注意对于 int 指针的使用。
 func isValidBST(root *TreeNode) bool {
 	// 定义一个递归函数 dfs，用于检查每个节点是否满足 BST 条件
 	// 参数 min 和 max 是当前节点允许的取值上下限，使用 *int 类型表示“可选”边界（nil 表示无界）
